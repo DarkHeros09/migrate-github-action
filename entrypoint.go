@@ -4,26 +4,16 @@ import (
 	"bytes"
 	"io"
 	"log"
-	"net/url"
 	"os"
 	"os/exec"
-	"strings"
 )
 
 func main() {
 	args := os.Args
 
-	if len(args[5]) > 0 {
-		arguments = append(arguments, "-verbose")
-	}
+	arguments := args[1]
 
-	if len(args[6]) > 0 {
-		arguments = append(arguments, "-version")
-	}
-
-	arguments = append(arguments, args[7])
-
-	cmd := exec.Command("migrate", arguments...)
+	cmd := exec.Command("migrate", arguments)
 	var stdBuffer bytes.Buffer
 	mw := io.MultiWriter(os.Stdout, &stdBuffer)
 
