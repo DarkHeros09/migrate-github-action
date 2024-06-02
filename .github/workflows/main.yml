@@ -9,21 +9,15 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: qyo}Mh{Bn&X[Ppc!dlsrG
+          POSTGRES_PASSWORD: secret
           POSTGRES_DB: database
         ports:
-          - 5432:5432
+          - 6666:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:  
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Check with version flag
         uses: ./
         with:
-          database: postgres://postgres:qyo}Mh{Bn&X[Ppc!dlsrG@postgres:5432/database?sslmode=disable
-          version: true
-      - name: Check basic execution with defaults
-        uses: ./
-        with:
-          database: postgres://postgres:qyo}Mh{Bn&X[Ppc!dlsrG@postgres:5432/database?sslmode=disable
-          verbose: true
+          command: '-path ./migrations -database postgresql://postgres:secret@localhost:6666/database?sslmode=disable -verbose up'

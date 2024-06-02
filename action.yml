@@ -4,37 +4,14 @@ author: 'Vladimir Pavlov'
 description: 'Database seed tool built with golang-migrate'
 inputs:
   path:
-    description: 'Location of the migration files'
-    required: true
-    default: './migrations'
-  database:
-    description: 'Run migrations against this database (ex: postgres://postgres:postgres@postgres:5432/database?sslmode=disable)'
-    required: true
   command:
     description: 'Command to run'
-    default: 'up'
-  prefetch:
-    description: 'Number of migrations to load in advance before executing (default 10)'
-    default: '10'
-  lockTimeout:
-    description: 'Allow N seconds to acquire database lock (default 15)'
-    default: '15'
-  verbose:
-    description: 'Print verbose logging'
-    default: ''
-  version: 
-    description: 'Print version'
-    default: ''
+    required: true
+'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args: 
-    - ${{ inputs.path }}
-    - ${{ inputs.database }}
-    - ${{ inputs.prefetch }}
-    - ${{ inputs.lockTimeout }}
-    - ${{ inputs.verbose }}
-    - ${{ inputs.version }}
+  args:
     - ${{ inputs.command }}
 
 branding:
