@@ -3,13 +3,16 @@ name: 'Migrate database'
 author: 'Vladimir Pavlov'
 description: 'Database seed tool built with golang-migrate'
 inputs:
-  command:
-    description: 'Command to run'
+  path:
+    description: 'Location of the migration files'
     required: true
+    default: './migrations'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args: 
+  - ${{ inputs.path }}
 
 branding:
   icon: 'database'

@@ -2,5 +2,5 @@
 
 sh -c '
     migrate -version
-    migrate -path migrations -database postgresql://postgres:secret@localhost:6666/database?sslmode=disable -verbose up
+    migrate -path $INPUT_PATH -database postgresql://postgres:secret@localhost:6666/cshop?sslmode=disable -verbose up
 '

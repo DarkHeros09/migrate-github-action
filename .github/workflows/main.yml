@@ -10,7 +10,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: secret
-          POSTGRES_DB: database
+          POSTGRES_DB: cshop
         ports:
           - 6666:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -18,5 +18,3 @@ jobs:
     steps:  
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Check with version flag
-        uses: ./
