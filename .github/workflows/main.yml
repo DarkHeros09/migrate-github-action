@@ -21,4 +21,4 @@ jobs:
       - name: Check with version flag
         uses: ./
         with:
-          command: '-path ./migrations -database postgresql://postgres:secret@localhost:6666/database?sslmode=disable -verbose up'
+          command: -path ./migrations -database postgresql://postgres:secret@localhost:6666/database?sslmode=disable -verbose up
